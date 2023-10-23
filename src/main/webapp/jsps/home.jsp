@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1 align="center">Welcome to  Technologies Pvt Ltd. Sri Satya Sai (Dist),Andhra Pradesh,India </h1>
-<h1 align="center"> Mahesh khalid devops change the code New Batch will be start in October 3rd week  at 7.30 PM IST - </h1> 
+<h1 align="center"> Mahesh khalid devops hello change the code New Batch will be start in October 3rd week  at 7.30 PM IST - </h1> 
 <h1 align="center"> Mithun Technologies- Very Good Training center for DevOps with AWS in Bangalore India and also for Job Assitance Job Support also...Teaching Real Time scnerios</h1>
 <hr>
 <br>
